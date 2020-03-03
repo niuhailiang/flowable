@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dapeng.flow.workhour.dao.NodeWorkHourDoMapper">
+  <resultMap id="BaseResultMap" type="com.dapeng.flow.workhour.pojo.NodeWorkHourDo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <id column="wr_month" jdbcType="INTEGER" property="wrMonth" />
+    <result column="instance_id" jdbcType="VARCHAR" property="instanceId" />
+    <result column="wr_code" jdbcType="VARCHAR" property="wrCode" />
+    <result column="node_id" jdbcType="VARCHAR" property="nodeId" />
+    <result column="node_name" jdbcType="VARCHAR" property="nodeName" />
+    <result column="node_attr" jdbcType="VARCHAR" property="nodeAttr" />
+    <result column="node_type" jdbcType="TINYINT" property="nodeType" />
+    <result column="sort_no" jdbcType="INTEGER" property="sortNo" />
+    <result column="begin_time" jdbcType="TIMESTAMP" property="beginTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="cost_time" jdbcType="INTEGER" property="costTime" />
+    <result column="pro_people" jdbcType="INTEGER" property="proPeople" />
+    <result column="pro_people_name" jdbcType="VARCHAR" property="proPeopleName" />
+    <result column="tp_calculate" jdbcType="BIT" property="tpCalculate" />
+    <result column="create_id" jdbcType="INTEGER" property="createId" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, wr_month, instance_id, wr_code, node_id, node_name, node_attr, node_type, sort_no, 
+    begin_time, end_time, cost_time, pro_people, pro_people_name, tp_calculate, create_id, 
+    create_name, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.dapeng.flow.workhour.pojo.NodeWorkHourDoKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_node_workhour_2020
+    where id = #{id,jdbcType=VARCHAR}
+      and wr_month = #{wrMonth,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dapeng.flow.workhour.pojo.NodeWorkHourDoKey">
+    delete from t_node_workhour_2020
+    where id = #{id,jdbcType=VARCHAR}
+      and wr_month = #{wrMonth,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSelective" parameterType="com.dapeng.flow.workhour.pojo.NodeWorkHourDo">
+    insert into t_node_workhour_2020
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="wrMonth != null">
+        wr_month,
+      </if>
+      <if test="instanceId != null">
+        instance_id,
+      </if>
+      <if test="wrCode != null">
+        wr_code,
+      </if>
+      <if test="nodeId != null">
+        node_id,
+      </if>
+      <if test="nodeName != null">
+        node_name,
+      </if>
+      <if test="nodeAttr != null">
+        node_attr,
+      </if>
+      <if test="nodeType != null">
+        node_type,
+      </if>
+      <if test="sortNo != null">
+        sort_no,
+      </if>
+      <if test="beginTime != null">
+        begin_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="costTime != null">
+        cost_time,
+      </if>
+      <if test="proPeople != null">
+        pro_people,
+      </if>
+      <if test="proPeopleName != null">
+        pro_people_name,
+      </if>
+      <if test="tpCalculate != null">
+        tp_calculate,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="wrMonth != null">
+        #{wrMonth,jdbcType=INTEGER},
+      </if>
+      <if test="instanceId != null">
+        #{instanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="wrCode != null">
+        #{wrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeId != null">
+        #{nodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeName != null">
+        #{nodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeAttr != null">
+        #{nodeAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeType != null">
+        #{nodeType,jdbcType=TINYINT},
+      </if>
+      <if test="sortNo != null">
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="beginTime != null">
+        #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="costTime != null">
+        #{costTime,jdbcType=INTEGER},
+      </if>
+      <if test="proPeople != null">
+        #{proPeople,jdbcType=INTEGER},
+      </if>
+      <if test="proPeopleName != null">
+        #{proPeopleName,jdbcType=VARCHAR},
+      </if>
+      <if test="tpCalculate != null">
+        #{tpCalculate,jdbcType=BIT},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=INTEGER},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dapeng.flow.workhour.pojo.NodeWorkHourDo">
+    update t_node_workhour_2020
+    <set>
+      <if test="instanceId != null">
+        instance_id = #{instanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="wrCode != null">
+        wr_code = #{wrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeId != null">
+        node_id = #{nodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeName != null">
+        node_name = #{nodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeAttr != null">
+        node_attr = #{nodeAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeType != null">
+        node_type = #{nodeType,jdbcType=TINYINT},
+      </if>
+      <if test="sortNo != null">
+        sort_no = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="beginTime != null">
+        begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="costTime != null">
+        cost_time = #{costTime,jdbcType=INTEGER},
+      </if>
+      <if test="proPeople != null">
+        pro_people = #{proPeople,jdbcType=INTEGER},
+      </if>
+      <if test="proPeopleName != null">
+        pro_people_name = #{proPeopleName,jdbcType=VARCHAR},
+      </if>
+      <if test="tpCalculate != null">
+        tp_calculate = #{tpCalculate,jdbcType=BIT},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=INTEGER},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+      and wr_month = #{wrMonth,jdbcType=INTEGER}
+  </update>
+</mapper>

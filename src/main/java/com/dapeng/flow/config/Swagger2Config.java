@@ -27,7 +27,7 @@ public class Swagger2Config {
                 .apiInfo(apiInfo())
                 .select()
                 // 自行修改为自己的包路径
-                .apis(RequestHandlerSelectors.basePackage("com.dapeng.flow.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.dapeng.flow"))
                 .paths(PathSelectors.any())
                 .build();
     }
