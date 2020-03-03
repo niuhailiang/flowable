@@ -3,10 +3,14 @@ package com.dapeng.flow.workhour.strategy;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.dapeng.flow.common.result.ResponseCode;
 import com.dapeng.flow.common.result.ResponseData;
+import com.dapeng.flow.flowable.handler.InstanceHandler;
 import com.dapeng.flow.workhour.dto.WorkHourDto;
 /**
  * 工时策略管理器
@@ -15,6 +19,8 @@ import com.dapeng.flow.workhour.dto.WorkHourDto;
  */
 @Component
 public class WorkHourStrategyContext {
+	private static Logger logger = LoggerFactory.getLogger(WorkHourStrategyContext.class);
+
 	private final Map<String, WorkHourStrategy> strategyMap = new ConcurrentHashMap<>();
 	/**策略后缀**/
 	private final static String suffix="WorkHourStrategy";
@@ -37,8 +43,8 @@ public class WorkHourStrategyContext {
 	public ResponseData executeStrategy(WorkHourDto hourDto){
 		WorkHourStrategy strategy=strategyMap.get(hourDto.getNodeAttr()+suffix);
 		if(strategy==null){
-			System.out.println("没有合适的策略执行");
-			return null;
+			logger.error(ResponseCode.HOUR_NOAVAILABLE_STRATEGY.getCode()+":"+ResponseCode.HOUR_NOAVAILABLE_STRATEGY.getMessage());
+			return ResponseData.error(ResponseCode.HOUR_NOAVAILABLE_STRATEGY.getCode(), ResponseCode.HOUR_NOAVAILABLE_STRATEGY.getMessage());
 		}else{
 			return strategy.doSaveWorkHour(hourDto);
 		}
